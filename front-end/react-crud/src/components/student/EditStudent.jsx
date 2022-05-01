@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Navigation } from '../Navigation';
 
@@ -13,7 +13,7 @@ export const EditStudent = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/crud/students/list/${params.id}`)
+      .get(`http://localhost:3002/crud/students/retrieve/${params.id}`)
       .then((res) => {
         setName(res.data.name);
         setCourse(res.data.course);
@@ -52,15 +52,39 @@ export const EditStudent = (props) => {
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nome</Form.Label>
-          <Form.Control type="text" placeholder="Digite o nome" />
+          <Form.Control
+            type="text"
+            placeholder="Digite o nome"
+            value={name == null || name === undefined ? '' : name}
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formCourse">
           <Form.Label>Curso</Form.Label>
-          <Form.Control type="text" placeholder="Digite o curso" />
+          <Form.Control
+            type="text"
+            placeholder="Digite o curso"
+            value={course ?? ''}
+            onChange={(event) => {
+              setCourse(event.target.value);
+            }}
+          />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formIra">
           <Form.Label>IRA</Form.Label>
-          <Form.Control type="number" placeholder="Digite o IRA" />
+          <Form.Control
+            type="number"
+            placeholder="Digite o IRA"
+            value={ira ?? 0}
+            onChange={(event) => {
+              setIra(event.target.value);
+            }}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Button type="submit" variant="primary">Atualizar</Button>
         </Form.Group>
       </Form>
     </div>

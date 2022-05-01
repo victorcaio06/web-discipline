@@ -41,7 +41,7 @@ class StudentService {
     return false;
   }
 
-  static retrive(_id) {
+  static retrieve(_id) {
     for (let i = 0; i < students.length; i++) {
       if (students[i]._id == _id) {
         return students[i];

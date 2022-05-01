@@ -10,7 +10,7 @@ router.get(
 )
 
 router.post('/create', function (req, res, next) {
-    const student = StudentService.create(req.body);
+    const student = StudentService.register(req.body);
     return res.json(student);
 });
 
