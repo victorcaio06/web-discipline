@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var ProfessorService = '../../services/professor/ProfessorService.js';
+var ProfessorService = require('../../services/professor/ProfessorService');
 
-router.get('/list', (req, res, next) => {
+router.get('/list', function (req, res, next) {
   return res.json(ProfessorService.list());
 });
 

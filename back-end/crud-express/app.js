@@ -2,9 +2,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
 var users = require('./routes/users');
-let students = require('./routes/student/StudentRoute');
+// let students = require('./routes/student/StudentRoute');
+let prof = require('./routes/professor/ProfessorRoute');
 
 var app = express();
 
@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use('/api/v1/users', users);
-app.use('/crud/students', students);
-
+// app.use('/crud/students', students);
+app.use('/crud/professors', prof);
 
 module.exports = app;

@@ -1,4 +1,4 @@
-module.exports = class ProfessorModel {
+class ProfessorModel {
   constructor(_id, name, university, degree) {
     this._id = _id;
     this.name = name;
@@ -6,3 +6,5 @@ module.exports = class ProfessorModel {
     this.degree = degree;
   }
 };
+
+module.exports = ProfessorModel;

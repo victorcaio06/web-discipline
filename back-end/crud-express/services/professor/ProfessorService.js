@@ -1,29 +1,29 @@
-const ProfessorModel = require('../../models/professor/ProfessorModel.js');
+const ProfessorModel = require('../../models/professor/ProfessorModel');
 
 let professors = [
   {
     _id: 0,
     name: 'Gustavo Guanabara',
     university: 'Youtube',
-    degree: 'Mestrado',
+    degree: 'Mestrado'
   },
   {
     _id: 1,
     name: 'Davi Sena',
     university: 'Universidade Federal do Ceará',
-    degree: 'Doutorado',
+    degree: 'Doutorado'
   },
   {
     _id: 2,
     name: 'Joel',
     university: 'Universidade Federal do Ceará',
-    degree: 'Doutorado',
+    degree: 'Doutorado'
   },
 ];
 
 let _id = 3;
 
-module.exports = class ProfessorService {
+class ProfessorService {
   static register(data) {
     let professor = new ProfessorModel(
       _id++,
@@ -69,4 +69,6 @@ module.exports = class ProfessorService {
     }
     return {};
   }
-};
+}
+
+module.exports = ProfessorService;
