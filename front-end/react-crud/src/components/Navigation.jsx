@@ -37,10 +37,12 @@ export const Navigation = () => {
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title="Professor" id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
+                <Link to={'/createProfessor'}>
+                  <NavDropdown.Item href="#action/3.1">Adicionar</NavDropdown.Item>
+                </Link>
+                <Link to={'/listProfessor'}>
+                  <NavDropdown.Item href="#action/3.2">Listar</NavDropdown.Item>
+                </Link>
                 <NavDropdown.Item href="#action/3.3">
                   Something
                 </NavDropdown.Item>
