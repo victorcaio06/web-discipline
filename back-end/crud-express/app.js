@@ -21,7 +21,7 @@ app.use(function (req, res, next) {
   next();
 });
 app.use('/api/v1/users', users);
-app.use('/crud/students', students);
-app.use('/crud/professors', professors);
+app.use('/crud/students/', students);
+app.use('/crud/professors/', professors);
 
 module.exports = app;

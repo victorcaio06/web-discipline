@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Navigation } from '../Navigation';
 import axios from 'axios';
 import { StudentTableRow } from './StudentTableRow';
-import { Table } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export const ListStudent = () => {
   const [students, setStudents] = useState([]);
@@ -45,8 +46,8 @@ export const ListStudent = () => {
   return (
     <div className="container">
       <Navigation />
-      <main>
-        <h2>Listar Estudantes</h2>
+      <main style={{ marginTop: '10px' }}>
+        <h2>Lista dos Estudantes</h2>
         <Table striped bordered hover>
           <thead>
             <tr>
@@ -59,6 +60,11 @@ export const ListStudent = () => {
           </thead>
           <tbody>{generateTable()}</tbody>
         </Table>
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+          <Link to={'/createStudent'}>
+            <Button>Adicionar Estudante</Button>
+          </Link>
+        </div>
       </main>
     </div>
   );

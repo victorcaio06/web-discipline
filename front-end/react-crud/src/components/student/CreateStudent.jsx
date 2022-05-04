@@ -27,7 +27,7 @@ export const CreateStudent = () => {
   return (
     <div className="container">
       <Navigation />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ marginTop: '10px' }}>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nome</Form.Label>
           <Form.Control

@@ -13,7 +13,8 @@ export const CreateProfessor = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newProfessor = { name, university, degree };
-    axios.post('http://localhost:3002/crud/professors/create', newProfessor)
+    axios
+      .post('http://localhost:3002/crud/professors/create', newProfessor)
       .then((res) => {
         alert(`Professor ${name} adicionado com sucesso!!`);
         navigate('/listProfessor');
@@ -26,7 +27,7 @@ export const CreateProfessor = () => {
   return (
     <div className="container">
       <Navigation />
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} style={{ marginTop: '10px' }}>
         <Form.Group className="mb-3" controlId="formNameProfessor">
           <Form.Label>Nome</Form.Label>
           <Form.Control

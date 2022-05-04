@@ -24,7 +24,7 @@ let professors = [
 let _id = 3;
 
 class ProfessorService {
-  static register(data) {course
+  static register(data) {
     let professor = new ProfessorModel(
       _id++,
       data.name,
