@@ -14,7 +14,7 @@ export const CreateProfessor = () => {
     event.preventDefault();
     const newProfessor = { name, university, degree };
     axios
-      .post('http://localhost:3002/crud/professors/create', newProfessor)
+      .post('http://localhost:3002/professor/crud/create', newProfessor)
       .then((res) => {
         alert(`Professor ${name} adicionado com sucesso!!`);
         navigate('/listProfessor');

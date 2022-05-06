@@ -13,7 +13,7 @@ export const EditProfessor = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/crud/professors/retrieve/${params.id}`)
+      .get(`http://localhost:3002/professor/crud/retrieve/${params.id}`)
       .then((res) => {
         setName(res.data.name);
         setUniversity(res.data.university);
@@ -33,7 +33,7 @@ export const EditProfessor = () => {
     };
     axios
       .put(
-        'http://localhost:3002/crud/professors/update/' + params.id,
+        'http://localhost:3002/professor/crud/update/' + params.id,
         updateProfessor
       )
       .then((res) => {

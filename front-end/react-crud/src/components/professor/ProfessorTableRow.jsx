@@ -8,7 +8,7 @@ export const ProfessorTableRow = (props) => {
   const deleteProfessor = () => {
     if (window.confirm(`Deseja excluir o elemento de ID: ${_id}?`)) {
       axios
-        .delete(`http://localhost:3002/crud/professors/delete/${_id}`)
+        .delete(`http://localhost:3002/professor/crud/delete/${_id}`)
         .then((res) => {
           props.deleteProfessorById(_id);
         })

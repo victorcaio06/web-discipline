@@ -10,7 +10,7 @@ export const ListProfessor = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3002/crud/professors/list')
+      .get('http://localhost:3002/professor/crud/list')
       .then((res) => {
         setProfessors(res.data);
       })
