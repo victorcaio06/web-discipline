@@ -14,6 +14,10 @@ router.put('/update/:id', (req, res, next) => {
   UserService.update(req, res);
 });
 
+router.get('/retrieve/:id', (req, res, next) => {
+  UserService.retrieve(req, res);
+});
+
 router.delete('/delete/:id', (req, res, next) => {
   UserService.delete(req, res);
 });

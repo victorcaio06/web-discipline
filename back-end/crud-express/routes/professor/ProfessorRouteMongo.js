@@ -1,5 +1,4 @@
 let express = require('express');
-const ProfessorService = require('../../services/professor/ProfessorService');
 let router = express.Router();
 let ProfessorServiceMongo = require('../../services/professor/ProfessorServiceMongoDb');
 
@@ -11,8 +10,12 @@ router.post('/create', (req, res, next) => {
   ProfessorServiceMongo.register(req, res);
 });
 
-router.put('/updateq:id', (req, res, next) => {
+router.put('/update/:id', (req, res, next) => {
   ProfessorServiceMongo.update(req, res);
+});
+
+router.get('/retrieve/:id', (req, res, next) => {
+  ProfessorServiceMongo.retrieve(req, res);
 });
 
 router.delete('/delete/:id', (req, res, next) => {
