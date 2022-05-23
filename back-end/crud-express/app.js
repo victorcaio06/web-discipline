@@ -1,10 +1,13 @@
 var express = require('express');
+require('./bd/mongoConection');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var users = require('./routes/users');
-let students = require('./routes/student/StudentRoute');
-let professors = require('./routes/professor/ProfessorRoute');
+// let students = require('./routes/student/StudentRouteMongo');
+let students = require('./routes/student/StudentRouteMongo');
+// let professors = require('./routes/professor/ProfessorRoute');
+let professors = require('./routes/professor/ProfessorRouteMongo');
 
 var app = express();
 

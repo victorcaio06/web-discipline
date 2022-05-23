@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 export const ProfessorTableRow = (props) => {
   const { _id, name, university, degree } = props.professor;
   const deleteProfessor = () => {
-    if (window.confirm(`Deseja excluir o elemento de ID: ${_id}?`)) {
+    if (window.confirm(`Deseja excluir o: ${name}?`)) {
       axios
         .delete(`http://localhost:3002/professor/crud/delete/${_id}`)
         .then((res) => {
@@ -20,7 +20,7 @@ export const ProfessorTableRow = (props) => {
 
   return (
     <tr>
-      <td>{_id}</td>
+      {/* <td>{_id}</td> */}
       <td>{name}</td>
       <td>{university}</td>
       <td>{degree}</td>
@@ -36,7 +36,7 @@ export const ProfessorTableRow = (props) => {
             deleteProfessor();
           }}
         >
-          Apagar
+          Excluir
         </button>
       </td>
     </tr>

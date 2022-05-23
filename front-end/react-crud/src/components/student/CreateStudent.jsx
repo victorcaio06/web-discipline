@@ -14,7 +14,7 @@ export const CreateStudent = () => {
     event.preventDefault();
     const newStudent = { name, course, ira };
     axios
-      .post('http://localhost:3002/crud/students/create', newStudent)
+      .post('http://localhost:3002/crud/students/register', newStudent)
       .then((res) => {
         alert(`Aluno ${name} criado com sucesso.`);
         navigate('/listStudent');

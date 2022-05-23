@@ -7,7 +7,7 @@ export const StudentTableRow = (props) => {
   const { _id, name, course, ira } = props.student;
 
   function deleteStudent() {
-    if (window.confirm(`Deseja excluir o elemento de ID: ${_id}?`)) {
+    if (window.confirm(`Deseja excluir o: ${name}?`)) {
       //axios.delete(`http://localhost:3001/students/${_id}`)
       axios
         .delete(`http://localhost:3002/crud/students/delete/${_id}`)
@@ -17,7 +17,7 @@ export const StudentTableRow = (props) => {
   }
   return (
     <tr>
-      <td>{_id}</td>
+      {/* <td>{_id}</td> */}
       <td>{name}</td>
       <td>{course}</td>
       <td>{ira}</td>
@@ -28,7 +28,7 @@ export const StudentTableRow = (props) => {
       </td>
       <td style={{ textAlign: 'center' }}>
         <button className="btn btn-danger" onClick={() => deleteStudent()}>
-          Apagar
+          Excluir
         </button>
       </td>
     </tr>

@@ -51,7 +51,7 @@ export const ListStudent = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>ID</th>
+              {/* <th>ID</th> */}
               <th>Nome</th>
               <th>Curso</th>
               <th>IRA</th>

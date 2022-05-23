@@ -47,7 +47,7 @@ export const ListProfessor = () => {
         <Table striped bordered hover>
           <thead>
             <tr>
-              <th>ID</th>
+              {/* <th>ID</th> */}
               <th>Nome</th>
               <th>Universidade</th>
               <th>Grau de escolaridade</th>
