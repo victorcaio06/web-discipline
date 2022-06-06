@@ -9,7 +9,7 @@ import { ListProfessor } from './components/professor/ListProfessor';
 import { CreateStudent } from './components/student/CreateStudent';
 import { EditStudent } from './components/student/EditStudent';
 import { ListStudent } from './components/student/ListStudent';
-
+//teste
 function App() {
   return (
     <BrowserRouter>
