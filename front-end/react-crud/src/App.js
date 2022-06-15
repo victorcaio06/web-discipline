@@ -9,21 +9,25 @@ import { ListProfessor } from './components/professor/ListProfessor';
 import { CreateStudent } from './components/student/CreateStudent';
 import { EditStudent } from './components/student/EditStudent';
 import { ListStudent } from './components/student/ListStudent';
-//teste
+import Firebase from './utils/Firabase';
+import FirebaseContext from './utils/FirebaseContext';
+
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-          <Route path="/About" element={<About/>}/>
+    <FirebaseContext.Provider value={new Firebase()}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/About" element={<About />} />
           <Route path="createStudent" element={<CreateStudent />} />
           <Route path="listStudent" element={<ListStudent />} />
           <Route path="editStudent/:id" element={<EditStudent />} />
           <Route path="createProfessor" element={<CreateProfessor />} />
           <Route path="listProfessor" element={<ListProfessor />} />
           <Route path="editProfessor/:id" element={<EditProfessor />} />
-      </Routes>
-    </BrowserRouter>
+        </Routes>
+      </BrowserRouter>
+    </FirebaseContext.Provider>
   );
 }
 
