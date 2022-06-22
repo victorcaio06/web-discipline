@@ -1,34 +1,41 @@
-import React, { useState, useEffect } from 'react';
-import { Navigation } from '../Navigation';
-import axios from 'axios';
-import { StudentTableRow } from './StudentTableRow';
+import { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { Navigation } from '../Navigation';
+import { StudentTableRow } from './StudentTableRow';
+import FirebaseContext from '../../utils/FirebaseContext';
+import FirebaseStudentService from '../../service/student/FirebaseStudentService';
 
-export const ListStudent = () => {
+export const ListStudentPage = () => {
+  return (
+    <FirebaseContext.Consumer>
+      {(firebase) => {
+        <ListStudent firebase={firebase} />;
+      }}
+    </FirebaseContext.Consumer>
+  );
+};
+
+const ListStudent = (props) => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3002/crud/students/list')
-      .then((res) => {
-        setStudents(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    FirebaseStudentService.list_onSnapshot(
+      props.firebase.getFirestoreDb(),
+      (students) => {
+        setStudents(students);
+      }
+    );
+  }, [props.firebase]);
 
   function deleteStudentById(_id) {
     let studentsTemp = students;
     for (let i = 0; i < studentsTemp.length; i++) {
       if (studentsTemp[i]._id === _id) {
-        //console.log("1")
         studentsTemp.splice(i, 1);
       }
     }
     setStudents([...studentsTemp]); //deve-se criar um outro array para disparar o re-render
-    //setFlag(!flag)
   }
 
   function generateTable() {

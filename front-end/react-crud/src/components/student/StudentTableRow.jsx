@@ -1,23 +1,19 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import FirebaseStudentService from '../../service/student/FirebaseStudentService';
 
 export const StudentTableRow = (props) => {
   const { _id, name, course, ira } = props.student;
 
   function deleteStudent() {
     if (window.confirm(`Deseja excluir o: ${name}?`)) {
-      //axios.delete(`http://localhost:3001/students/${_id}`)
-      axios
-        .delete(`http://localhost:3002/crud/students/delete/${_id}`)
-        .then((response) => props.deleteStudentById(_id))
-        .catch((error) => console.log(error));
+      FirebaseStudentService.delete(props.firebase, _id)
     }
   }
+
   return (
     <tr>
-      {/* <td>{_id}</td> */}
       <td>{name}</td>
       <td>{course}</td>
       <td>{ira}</td>

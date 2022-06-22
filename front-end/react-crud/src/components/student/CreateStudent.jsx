@@ -1,10 +1,18 @@
-import axios from 'axios';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import { Navigation } from '../Navigation';
+import FirebaseContext from '../../utils/FirebaseContext.js';
+import FirebaseStudentService from '../../service/student/FirebaseStudentService.js'
 
-export const CreateStudent = () => {
+export const CreateStudentPage = () => {
+  return (
+    <FirebaseContext.Consumer>
+      {(firebase) => <CreateStudent firebase={firebase} />}
+    </FirebaseContext.Consumer>
+  );
+};
+
+const CreateStudent = (props) => {
   const [name, setName] = useState('');
   const [course, setCourse] = useState('');
   const [ira, setIRA] = useState(0);
@@ -13,20 +21,18 @@ export const CreateStudent = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const newStudent = { name, course, ira };
-    axios
-      .post('http://localhost:3002/crud/students/register', newStudent)
-      .then((res) => {
-        alert(`Aluno ${name} criado com sucesso.`);
+    FirebaseStudentService.create(
+      props.firebase.getFirestoreDb(),
+      (_id) => {
+        alert(`Aluno ${name} criado com sucesso!!`);
         navigate('/listStudent');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+      },
+      newStudent
+    );
   };
 
   return (
     <div className="container">
-      <Navigation />
       <Form onSubmit={handleSubmit} style={{ marginTop: '10px' }}>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nome</Form.Label>

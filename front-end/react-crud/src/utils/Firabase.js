@@ -1,14 +1,11 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
+import { key } from '../firebaseConfig/FirebaseKey';
 
 export default class Firebase {
   constructor() {
-    this.app = initializeApp({
-      apiKey: process.env.API_KEY,
-      authDomain: process.env.AUTH_DOMAIN,
-      projectId: process.env.PROJECT_ID,
-    });
+    this.app = initializeApp({key});
     this.user = null;
   }
 

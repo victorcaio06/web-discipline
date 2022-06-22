@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Navigation } from '../Navigation';
 
 export const EditStudent = (props) => {
   const [name, setName] = useState('');
@@ -48,7 +47,6 @@ export const EditStudent = (props) => {
 
   return (
     <div className="container">
-      <Navigation />
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formName">
           <Form.Label>Nome</Form.Label>
