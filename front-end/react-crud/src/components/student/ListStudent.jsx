@@ -6,15 +6,13 @@ import { StudentTableRow } from './StudentTableRow';
 import FirebaseContext from '../../utils/FirebaseContext';
 import FirebaseStudentService from '../../service/student/FirebaseStudentService';
 
-export const ListStudentPage = () => {
-  return (
-    <FirebaseContext.Consumer>
-      {(firebase) => {
-        <ListStudent firebase={firebase} />;
-      }}
-    </FirebaseContext.Consumer>
-  );
-};
+export const ListStudentPage = () => (
+  <FirebaseContext.Consumer>
+    {(firebase) => {
+      <ListStudent firebase={firebase} />;
+    }}
+  </FirebaseContext.Consumer>
+);
 
 const ListStudent = (props) => {
   const [students, setStudents] = useState([]);
@@ -23,10 +21,11 @@ const ListStudent = (props) => {
     FirebaseStudentService.list_onSnapshot(
       props.firebase.getFirestoreDb(),
       (students) => {
+        console.log(students);
         setStudents(students);
       }
     );
-  }, [props.firebase]);
+  }, []);
 
   function deleteStudentById(_id) {
     let studentsTemp = students;
@@ -46,6 +45,7 @@ const ListStudent = (props) => {
           student={student}
           key={i}
           deleteStudentById={deleteStudentById}
+          firestore={props.firebase.getFirestoreDb()}
         />
       );
     });

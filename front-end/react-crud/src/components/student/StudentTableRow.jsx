@@ -8,7 +8,13 @@ export const StudentTableRow = (props) => {
 
   function deleteStudent() {
     if (window.confirm(`Deseja excluir o: ${name}?`)) {
-      FirebaseStudentService.delete(props.firebase, _id)
+      FirebaseStudentService.delete(
+        props.firebase,
+        (ok) => {
+          if (ok) console.log('ok!');
+        },
+        _id
+      );
     }
   }
 

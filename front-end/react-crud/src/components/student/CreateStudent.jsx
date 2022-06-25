@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import FirebaseContext from '../../utils/FirebaseContext.js';
-import FirebaseStudentService from '../../service/student/FirebaseStudentService.js'
+import FirebaseStudentService from '../../service/student/FirebaseStudentService.js';
 
 export const CreateStudentPage = () => {
   return (

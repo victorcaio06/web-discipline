@@ -8,6 +8,7 @@ import {
   onSnapshot,
   query,
   updateDoc,
+  orderBy,
 } from 'firebase/firestore';
 
 export default class FirebaseStudentService {
@@ -17,7 +18,6 @@ export default class FirebaseStudentService {
         let students = [];
         querySnapshot.forEach((document) => {
           students.push({
-            _id: document.id,
             name: document.data().name,
             course: document.data().course,
             ira: document.data().ira,
@@ -29,18 +29,19 @@ export default class FirebaseStudentService {
   };
 
   static list_onSnapshot = (firestore, callback) => {
-    const q = query(collection(firestore, 'student'));
-    onSnapshot(q, (querySnapshot) => {
+    const coll = collection(firestore, 'student');
+    const queryFirebase = query(coll, orderBy('name'));
+    onSnapshot(queryFirebase, (querySnapshot) => {
       let students = [];
       querySnapshot.forEach((document) => {
         students.push({
           _id: document.id,
           name: document.data().name,
-          course: document.data().course,
+          course: document.data().name,
           ira: document.data().ira,
         });
       });
-      callback(students);
+      callback(students)
     });
   };
 

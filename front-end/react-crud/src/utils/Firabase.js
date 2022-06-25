@@ -5,7 +5,7 @@ import { key } from '../firebaseConfig/FirebaseKey';
 
 export default class Firebase {
   constructor() {
-    this.app = initializeApp({key});
+    this.app = initializeApp(key);
     this.user = null;
   }
 
