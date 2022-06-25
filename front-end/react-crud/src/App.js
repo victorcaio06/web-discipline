@@ -9,7 +9,7 @@ import { CreateProfessor } from './components/professor/CreateProfessor';
 import { EditProfessor } from './components/professor/EditProfessor';
 import { ListProfessor } from './components/professor/ListProfessor';
 import { EditStudent } from './components/student/EditStudent';
-import { ListStudentPage } from './components/student/ListStudent';
+import ListStudent from './components/student/ListStudent';
 
 const AppPage = () => {
   return (
@@ -30,7 +30,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/About" element={<About />} />
         <Route path="createStudent" element={<CreateStudentPage />} />
-        <Route path="listStudent" element={<ListStudentPage />} />
+        <Route path="listStudent" element={<ListStudent />} />
         <Route path="editStudent/:id" element={<EditStudent />} />
         <Route path="createProfessor" element={<CreateProfessor />} />
         <Route path="listProfessor" element={<ListProfessor />} />

@@ -5,27 +5,26 @@ import { Navigation } from '../Navigation';
 import { StudentTableRow } from './StudentTableRow';
 import FirebaseContext from '../../utils/FirebaseContext';
 import FirebaseStudentService from '../../service/student/FirebaseStudentService';
+import Firebase from '../../utils/Firabase';
 
-export const ListStudentPage = () => (
-  <FirebaseContext.Consumer>
-    {(firebase) => {
-      <ListStudent firebase={firebase} />;
-    }}
-  </FirebaseContext.Consumer>
-);
+const ListStudentPage = () => {
+  return (
+    <FirebaseContext.Consumer>
+      {(firebase) => {
+        return <ListStudent firebase={firebase} />;
+      }}
+    </FirebaseContext.Consumer>
+  );
+};
 
 const ListStudent = (props) => {
   const [students, setStudents] = useState([]);
 
   useEffect(() => {
-    FirebaseStudentService.list_onSnapshot(
-      props.firebase.getFirestoreDb(),
-      (students) => {
-        console.log(props.firebase.getFirestoreDb());
-        setStudents(students);
-      }
-    );
-  });
+    FirebaseStudentService.list(props.firebase.getFirestoreDb(), (students) => {
+      setStudents(students);
+    });
+  }, [props.firebase]);
 
   function deleteStudentById(_id) {
     let studentsTemp = students;
@@ -52,7 +51,6 @@ const ListStudent = (props) => {
   }
   return (
     <div className="container">
-      <Navigation />
       <main style={{ marginTop: '10px' }}>
         <h2>Lista dos Estudantes</h2>
         <Table striped bordered hover>
@@ -76,3 +74,5 @@ const ListStudent = (props) => {
     </div>
   );
 };
+
+export default ListStudentPage;

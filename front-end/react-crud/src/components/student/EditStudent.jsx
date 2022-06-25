@@ -2,8 +2,18 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
+import FirebaseContext from '../../utils/FirebaseContext';
+import FirebaseStudentService from '../../service/student/FirebaseStudentService';
 
-export const EditStudent = (props) => {
+const EditStudentPage = () => {
+  <FirebaseContext.Consumer>
+    {(firebase) => {
+      return <EditStudent firebase={firebase} />;
+    }}
+  </FirebaseContext.Consumer>;
+};
+
+const EditStudent = (props) => {
   const [name, setName] = useState('');
   const [course, setCourse] = useState('');
   const [ira, setIra] = useState(0);
@@ -30,16 +40,12 @@ export const EditStudent = (props) => {
       course,
       ira,
     };
-    //axios.put('http://localhost:3001/students/' + params.id, updatedStudent)
     axios
       .put(
         'http://localhost:3002/crud/students/update/' + params.id,
         updatedStudent
       )
       .then((res) => {
-        //console.log(res.data)
-        //props.history.push('/listStudent');
-        //console.log(props)
         navigate('/listStudent');
       })
       .catch((err) => console.log(err));
@@ -82,9 +88,13 @@ export const EditStudent = (props) => {
           />
         </Form.Group>
         <Form.Group>
-          <Button type="submit" variant="primary">Atualizar</Button>
+          <Button type="submit" variant="primary">
+            Atualizar
+          </Button>
         </Form.Group>
       </Form>
     </div>
   );
 };
+
+export default EditStudentPage;
