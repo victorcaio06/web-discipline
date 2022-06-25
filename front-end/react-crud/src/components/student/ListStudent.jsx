@@ -21,11 +21,11 @@ const ListStudent = (props) => {
     FirebaseStudentService.list_onSnapshot(
       props.firebase.getFirestoreDb(),
       (students) => {
-        console.log(students);
+        console.log(props.firebase.getFirestoreDb());
         setStudents(students);
       }
     );
-  }, []);
+  });
 
   function deleteStudentById(_id) {
     let studentsTemp = students;
