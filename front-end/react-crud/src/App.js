@@ -8,7 +8,7 @@ import { CreateStudentPage } from './components/student/CreateStudent';
 import { CreateProfessor } from './components/professor/CreateProfessor';
 import { EditProfessor } from './components/professor/EditProfessor';
 import { ListProfessor } from './components/professor/ListProfessor';
-import { EditStudent } from './components/student/EditStudent';
+import EditStudent from './components/student/EditStudent';
 import ListStudent from './components/student/ListStudent';
 
 const AppPage = () => {

@@ -1,16 +1,17 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import FirebaseContext from '../../utils/FirebaseContext';
 import FirebaseStudentService from '../../service/student/FirebaseStudentService';
+import FirebaseContext from '../../utils/FirebaseContext';
 
 const EditStudentPage = () => {
-  <FirebaseContext.Consumer>
-    {(firebase) => {
-      return <EditStudent firebase={firebase} />;
-    }}
-  </FirebaseContext.Consumer>;
+  return (
+    <FirebaseContext.Consumer>
+      {(firebase) => {
+        return <EditStudent firebase={firebase} />;
+      }}
+    </FirebaseContext.Consumer>
+  );
 };
 
 const EditStudent = (props) => {
@@ -21,17 +22,16 @@ const EditStudent = (props) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3002/crud/students/retrieve/${params.id}`)
-      .then((res) => {
-        setName(res.data.name);
-        setCourse(res.data.course);
-        setIra(res.data.ira);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [params.id]);
+    FirebaseStudentService.retrieve(
+      props.firebase.getFirestoreDb(),
+      (student) => {
+        setName(student.name);
+        setCourse(student.course);
+        setIra(student.ira);
+      },
+      params.id
+    );
+  }, [params.id, props.firabse]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,15 +40,15 @@ const EditStudent = (props) => {
       course,
       ira,
     };
-    axios
-      .put(
-        'http://localhost:3002/crud/students/update/' + params.id,
-        updatedStudent
-      )
-      .then((res) => {
+
+    FirebaseStudentService.update(
+      props.firebase.getFirestoreDb(),
+      () => {
         navigate('/listStudent');
-      })
-      .catch((err) => console.log(err));
+      },
+      params.id,
+      updatedStudent
+    );
   };
 
   return (
