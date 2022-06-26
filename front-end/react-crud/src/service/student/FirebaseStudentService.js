@@ -41,7 +41,7 @@ export default class FirebaseStudentService {
           ira: document.data().ira,
         });
       });
-      callback(students)
+      callback(students);
     });
   };
 
@@ -55,20 +55,22 @@ export default class FirebaseStudentService {
       .catch((error) => console.log(error));
   };
 
-  static retrieve = (firestore, callback, _id) => {
-    const documentRef = doc(firestore, 'student', _id);
-    getDoc(documentRef)
-      .then((documentSnap) => {
-        callback(documentSnap.data());
-      })
-      .catch((error) => console.log(error));
-  };
+  static retrieve = (firestore,callback,_id)=>{
+    const docRef = doc(firestore,'student',_id)
+    getDoc(docRef)
+    .then(
+        (docSnapshot)=>{
+            if (docSnapshot.exists()) callback(docSnapshot.data())
+        }
+    )
+    .catch(error=>console.log(error))
+}
 
   static update = (firestore, callback, _id, student) => {
-    const documentRef = doc(firestore, 'student', _id);
-    updateDoc(documentRef, student)
+    const docRef = doc(firestore, 'student', _id);
+    updateDoc(docRef, student)
       .then(() => {
-        callback();
+        callback(true);
       })
       .catch((error) => console.log(error));
   };

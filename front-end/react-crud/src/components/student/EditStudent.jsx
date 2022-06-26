@@ -25,13 +25,13 @@ const EditStudent = (props) => {
     FirebaseStudentService.retrieve(
       props.firebase.getFirestoreDb(),
       (student) => {
-        setName(student.name);
         setCourse(student.course);
         setIra(student.ira);
+        setName(student.name);
       },
       params.id
     );
-  }, [params.id, props.firabse]);
+  }, [params.id, props.firebase]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -43,8 +43,8 @@ const EditStudent = (props) => {
 
     FirebaseStudentService.update(
       props.firebase.getFirestoreDb(),
-      () => {
-        navigate('/listStudent');
+      (ok) => {
+        if (ok) navigate('/listStudent');
       },
       params.id,
       updatedStudent
