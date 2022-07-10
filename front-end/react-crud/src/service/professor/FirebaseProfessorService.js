@@ -10,7 +10,7 @@ import {
 
 export default class FirebaseProfessorService {
   static list = (firestore, callback) => {
-    getDocs(collection(firestore, 'professors'))
+    getDocs(collection(firestore, 'professor'))
       .then((querySnapshot) => {
         let professors = [];
         querySnapshot.forEach((professor) => {
