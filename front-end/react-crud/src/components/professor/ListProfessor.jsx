@@ -1,22 +1,31 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ProfessorTableRow } from './ProfessorTableRow';
+import FirebaseContext from '../../utils/FirebaseContext';
+import FirebaseProfessorService from '../../service/professor/FirebaseProfessorService';
 
-export const ListProfessor = () => {
+export const ListProfessorPage = () => {
+  return (
+    <FirebaseContext.Consumer>
+      {(firebase) => {
+        return <ListProfessor firebase={firebase} />;
+      }}
+    </FirebaseContext.Consumer>
+  );
+};
+
+const ListProfessor = (props) => {
   const [professors, setProfessors] = useState([]);
 
   useEffect(() => {
-    axios
-      .get('http://localhost:3002/professor/crud/list')
-      .then((res) => {
-        setProfessors(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    FirebaseProfessorService.list(
+      props.firebase.getFirestoreDb(),
+      (professors) => {
+        setProfessors(professors);
+      }
+    );
+  }, [props.firebase]);
 
   const deleteProfessorById = (_id) => {
     let professorsTemp = professors;

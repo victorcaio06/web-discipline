@@ -3,13 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import FirebaseContext from '../../utils/FirebaseContext';
 import { RestrictPage } from '../../utils/RestrictPage';
 import FirebaseProfessorService from '../../service/professor/FirebaseProfessorService';
+import Firabase from '../../utils/Firabase'
 
 export const CreateProfessorPage = ({ setShowToast, setToast }) => {
   return (
     <FirebaseContext.Consumer>
       {(firabase) => {
         return (
-          <RestrictPage isLogged={firabase.getUser() != null}>
+          <RestrictPage isLogged={firabase.getUser() != true}>
             <CreateProfessor
               firabase={firabase}
               setShowToast={setShowToast}
@@ -22,7 +23,7 @@ export const CreateProfessorPage = ({ setShowToast, setToast }) => {
   );
 };
 
-export const CreateProfessor = (props) => {
+const CreateProfessor = (props) => {
   const [name, setName] = useState('');
   const [university, setUniversity] = useState('');
   const [degree, setDegree] = useState('');

@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Navigation } from '../Navigation';
 import { StudentTableRow } from './StudentTableRow';
 import FirebaseContext from '../../utils/FirebaseContext';
 import FirebaseStudentService from '../../service/student/FirebaseStudentService';
-import Firebase from '../../utils/Firabase';
 
 const ListStudentPage = () => {
   return (

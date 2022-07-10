@@ -5,9 +5,9 @@ import { About } from './components/About';
 import { Navigation } from './components/Navigation';
 import { Route, Routes } from 'react-router-dom';
 import { CreateStudentPage } from './components/student/CreateStudent';
-import { CreateProfessor } from './components/professor/CreateProfessor';
+import { CreateProfessorPage } from './components/professor/CreateProfessor';
 import { EditProfessor } from './components/professor/EditProfessor';
-import { ListProfessor } from './components/professor/ListProfessor';
+import { ListProfessorPage } from './components/professor/ListProfessor';
 import EditStudent from './components/student/EditStudent';
 import ListStudent from './components/student/ListStudent';
 
@@ -32,8 +32,8 @@ function App() {
         <Route path="createStudent" element={<CreateStudentPage />} />
         <Route path="listStudent" element={<ListStudent />} />
         <Route path="editStudent/:id" element={<EditStudent />} />
-        <Route path="createProfessor" element={<CreateProfessor />} />
-        <Route path="listProfessor" element={<ListProfessor />} />
+        <Route path="createProfessor" element={<CreateProfessorPage />} />
+        <Route path="listProfessor" element={<ListProfessorPage />} />
         <Route path="editProfessor/:id" element={<EditProfessor />} />
       </Routes>
     </div>

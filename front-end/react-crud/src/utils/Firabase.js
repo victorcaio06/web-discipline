@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
-import key from '../firebaseConfig/FirebaseKey';
+import { key } from '../firebaseConfig/FirebaseKey';
 
 export default class Firebase {
   constructor() {
