@@ -2,7 +2,6 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Button, Table } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { Navigation } from '../Navigation';
 import { ProfessorTableRow } from './ProfessorTableRow';
 
 export const ListProfessor = () => {
@@ -41,7 +40,6 @@ export const ListProfessor = () => {
 
   return (
     <div className="container">
-      <Navigation />
       <main>
         <h2>Listas dos Professores</h2>
         <Table striped bordered hover>
